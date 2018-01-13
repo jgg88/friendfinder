@@ -13,7 +13,6 @@ var PORT = process.env.PORT || 3000;
 
 //Set up Express app to handle data parsing
 // =============================================================
-//***************TALK TO JACK ABOUT LINES 20-22**************
 // =============================================================
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -24,8 +23,8 @@ app.use('/static', express.static(path.join(__dirname, 'app/public')))
 //Routes
 // =============================================================
 // =============================================================
-app.get('./app/routing/apiRoutes.js')(app);
-app.get('./app/routing/htmlRoutes.js')(app);
+require('./app/routing/apiRoutes')(app);
+require('./app/routing/htmlRoutes')(app);
 
 
 //Starts server to begin listening

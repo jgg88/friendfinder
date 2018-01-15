@@ -25,21 +25,25 @@ module.exports = function(app) {
 		};
 
 		var userData = req.body;
-		var userScore = userData.scores;
-		var totalDifference = 0;
+		var userScores = userData.scores;
+		var totalDifference;
 
 		for (var i = 0; i < friends.length; i ++) {
-
+			currentFriend = friends[i];
 			totalDifference = 0;
 
-			for(var j = 0; j < friends[i].scores[j]; j++) {
+			for(var j = 0; j < currentFriend.scores.length; j++) {
+				currentFriendScore = currentFriend.scores[j];
+				
+				currentUserScore = userScores[j];
 
-				totalDifference += Math.abs(parseInt(userScore[j]) - parseInt(friends[i].scores[j]));
+
+				totalDifference += Math.abs(parseInt(currentUserScore) - parseInt(currentFriendScore));
 
 				if (totalDifference <= match.difference) {
 
-					match.name = friends[i].name;
-					match.photo = friends[i].photo;
+					match.name = currentFriend.name;
+					match.photo = currentFriend.photo;
 					match.difference = totalDifference;
 				}
 			}
